@@ -15,5 +15,5 @@ app.use(
 );
 app.use("/api/v1/users", userRouter);
 app.use("/api/v1/courses", courseRouter);
-app.use("/api/v1/?", timkiem_goiyRouter);
+// app.use("/api/v1/?", timkiem_goiyRouter);
 module.exports = app;
