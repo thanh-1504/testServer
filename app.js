@@ -7,7 +7,7 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "https://funstudy.netlify.app/",
+      "https://funstudy.netlify.app",
       "https://testserver-fuha.onrender.com",
       "http://localhost:5173",
     ],
