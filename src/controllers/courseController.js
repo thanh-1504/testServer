@@ -1,11 +1,22 @@
 const catchAsync = require("../common/catchAsync");
 const Course = require("../models/courseModel");
 
+const filterCourseByName = async (nameCourse) => {
+  return await Course.find({
+    name: { $regex: nameCourse.trim(), $options: "i" },
+  }).select("-courseDetail -__v -description");
+};
+
 // Lấy danh sách tất cả các khóa học
 exports.getAllCourses = catchAsync(async (req, res) => {
-  const courses = await Course.find();
+  const queryStr = req.query;
+  let courses = [];
+  if (Object.keys(queryStr).length > 0)
+    courses = await filterCourseByName(queryStr.name);
+  else courses = await Course.find();
   res.status(200).json({
     status: "success",
+    result: courses.length,
     courses,
   });
 });
